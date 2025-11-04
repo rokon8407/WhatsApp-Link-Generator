@@ -5,13 +5,216 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Link Generator</title>
     
+    <!-- Google Font (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- Reset & Basic Setup --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            /* This centers the content vertically and horizontally */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        /* --- Main Content Wrapper --- */
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            /* The card and footer will be centered by the body */
+        }
+
+        /* --- Generator Card --- */
+        .generator-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .generator-card h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .generator-card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- Form Elements --- */
+        .generator-card form {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .generator-card label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .input-wrapper .fa-phone {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+
+        .generator-card input[type="text"] {
+            width: 100%;
+            padding: 12px 12px 12px 40px; /* Left padding for icon */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .generator-card input[type="text"]:focus {
+            outline: none;
+            border-color: #5A4BFF;
+            box-shadow: 0 0 0 2px rgba(90, 75, 255, 0.2);
+        }
+
+        .generator-card button[type="submit"] {
+            background-color: #5A4BFF; /* Primary button color from image */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .generator-card button[type="submit"]:hover {
+            background-color: #4a3cde;
+        }
+
+        /* --- Result Area (Dynamic) --- */
+        #result-area {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            text-align: left;
+            word-break: break-all;
+            display: none; /* Hidden by default */
+        }
+
+        #result-area strong {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        #result-area p {
+            font-size: 1rem;
+            color: #007bff;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        #result-area p.error-message {
+            color: #D9534F;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        #result-area .result-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Style for both button and a tags */
+        #result-area button,
+        #result-area a {
+            flex-grow: 1;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #result-area button:hover,
+        #result-area a:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* --- Helper Text & Footer --- */
+        .helper-text {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #777;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; /* Increased gap for better spacing */
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #888;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #333; /* Darker hover for icons */
+        }
+    </style>
 </head>
 <body>
 
@@ -24,11 +227,12 @@
                 <label for="phoneNumber">Phone Number</label>
                 <div class="input-wrapper">
                     <i class="fa-solid fa-phone"></i>
-                    <input type="text" id="phoneNumber" placeholder="e.g., +15551234567" required>
+                    <input type="text" id="phoneNumber" placeholder="e.g., +8801796078879" required>
                 </div>
                 <button type="submit" id="generateBtn">Generate Link</button>
             </form>
 
+            <!-- This area will be populated by JavaScript -->
             <div id="result-area"></div>
         </div>
         
@@ -47,6 +251,88 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const waForm = document.getElementById('wa-form');
+            const phoneNumberInput = document.getElementById('phoneNumber');
+            const resultArea = document.getElementById('result-area');
+
+            waForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Stop the form from submitting normally
+                
+                const phoneNumber = phoneNumberInput.value.trim();
+                
+                // Clear previous results/errors
+                resultArea.innerHTML = '';
+                resultArea.style.display = 'none';
+
+                // --- Validation ---
+                if (!phoneNumber) {
+                    showError('Please enter a phone number.');
+                    return;
+                }
+
+                // Must start with '+'
+                if (!phoneNumber.startsWith('+')) {
+                    showError('Phone number must include "+" and the country code.');
+                    return;
+                }
+
+                // Remove all non-digit characters except the leading '+'
+                const processedNumber = phoneNumber.substring(1).replace(/\D/g, '');
+
+                if (processedNumber.length < 6) { // Basic check for a reasonable length
+                    showError('Please enter a valid phone number after the "+".');
+                    return;
+                }
+
+                // --- Success ---
+                const waLink = `https://wa.me/${processedNumber}`;
+                showResult(waLink);
+            });
+
+            function showResult(link) {
+                resultArea.style.display = 'block';
+                resultArea.innerHTML = `
+                    <strong>Here's your link:</strong>
+                    <p id="generated-link">${link}</p>
+                    <div class="result-actions">
+                        <button id="copy-btn">Copy Link</button>
+                        <a href="${link}" target="_blank" id="test-btn">Test Link</a>
+                    </div>
+                `;
+                
+                // Add copy-to-clipboard functionality
+                const copyBtn = document.getElementById('copy-btn');
+                copyBtn.addEventListener('click', () => {
+                    // Use a simple copy command for broad compatibility
+                    try {
+                        const linkText = document.getElementById('generated-link').innerText;
+                        
+                        // Fallback for navigator.clipboard
+                        const textArea = document.createElement('textarea');
+                        textArea.value = linkText;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+
+                        copyBtn.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyBtn.textContent = 'Copy Link';
+                        }, 2000); // Reset text after 2 seconds
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                        showError('Failed to copy. Please copy manually.');
+                    }
+                });
+            }
+
+            function showError(message) {
+                resultArea.style.display = 'block';
+                resultArea.innerHTML = `<p class="error-message">${message}</p>`;
+            }
+        });
+    </script>
 </body>
 </html>
