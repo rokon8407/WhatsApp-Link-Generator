@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Link Generator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="content-wrapper">
+        <div class="generator-card">
+            <h1>WhatsApp Link Generator</h1>
+            <p>Create a clickable WhatsApp link instantly.</p>
+            
+            <form id="wa-form">
+                <label for="phoneNumber">Phone Number</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="text" id="phoneNumber" placeholder="e.g., +15551234567" required>
+                </div>
+                <button type="submit" id="generateBtn">Generate Link</button>
+            </form>
+
+            <div id="result-area"></div>
+        </div>
+        
+        <p class="helper-text">Phone number must include '+' and the country code.</p>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Md. Rokonuzzaman</p>
+        <div class="social-icons">
+            <a href="https://rokonz.netlify.app" target="_blank" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+            <a href="https://www.instagram.com/rokon8407" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/rokon8407" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://wa.me/+8801796078879" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/rokon8407" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/rokon8407/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
